@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap');
+ .horizontal-menu .bottom-navbar .page-navigation > .nav-item > .nav-link {
+    padding: 22px 10px;
+    line-height: 1;
+    font-weight: 400;
+}
+
+body {
+    margin: 0;
+    font-family: 'Roboto Slab', serif;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: left;
+    background-color: #fff;
+}
+
+
