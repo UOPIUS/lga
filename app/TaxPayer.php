@@ -20,6 +20,7 @@ class TaxPayer extends Model
     protected $primaryKey = 'id';
     /**
      * Fields permitted for filling
+     ooiuutthhgggcgfgf
      * @var array
      */
     protected $fillable = ['fname','lname','oname','phone','address',
@@ -33,7 +34,7 @@ class TaxPayer extends Model
     }
     public function state()
     {
-        
+
         return $this->belongsTo('App\State', 'state_id','state_id');
     }
     public function user()
