@@ -18,8 +18,14 @@ class Controller extends BaseController
     	
     	$stateCode = State::where('state_id',$state)->first()->state_code;
     	$tin = $stateCode.date('YmdHms');
-    	Log::Info($tin);
+    	//Log::Info($tin);
     	return $tin;
 
     }
+    public function generateUniqueCodeForTax($pptyCode,$userTin){
+        $code = $userTin.$ppty;
+        return $code;
+    }
+
+    
 }

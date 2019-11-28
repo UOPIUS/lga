@@ -107,7 +107,7 @@ class TaxPayerController extends Controller
 			
 		}
 		catch(\Exception $e){
-			 Session::flash('error', 'Could not save Tax Payer ');
+			 Session::flash('error', 'Could not save Tax Payer '.$e->getMessage());
 		}
 		
 	}

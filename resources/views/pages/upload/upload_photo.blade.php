@@ -1,105 +1,46 @@
 @extends('general.layout')
 @section('main_content')
-<?php
-$total = 0;
-//$transactionFee = ($evasConfig->commission + $evasConfig->pie_commission) * 100;
-?>
+
 <div class="w-100">
   <div class="row">
-    <div class="col-lg-4 grid-margin stretch-card">
+    
+    <div class="col-lg-8 offset-lg-2 grid-margin stretch-card">
       <div class="card">
-        <div class="card-body">
-          <h1>Client Details</h1>
-          <div class="img-fluid" alt='Client Photo'>
-            <a href="">
-            <img src="{{url('images/profile/'.$data->photo)}}">
-          </div>
-          <div class="table-responsive">
-            <table class="table shadow mb-5 bg-white rounded" id="client_table">
-              <thead>
-                <tr>
-                  <th>Full name</th>
-                  <th>{{$data->fname.' '.$data->lname.' '.$data->oname}}</th>
-                </tr>
-                <tr>
-                  <th>TIN</th>
-                  <th>{{$data->tin}}</th>
-                </tr>
-                <tr>
-                  <th>Mobile Number</th>
-                  <th>{{$data->phone}}</th>
-                </tr>
-                <tr>
-                  <th>Email</th>
-                  <th>{{($data->email) ? $data->email : 'NIL'}}</th>
-                </tr>
-                <tr>
-                  <th>House Address</th>
-                  <th>{{$data->address}}</th>
-                </tr>
-                <tr>
-                  <th>Work Type</th>
-                  <th>{{$data->work_type}}</th>
-                </tr>
-
-                <tr>
-                  <th>Logical Address</th>
-                  <th>{{$data->logical_address}}</th>
-                </tr>
-
-
-              </thead>
-
-            </table>
-          </div>
-          <div class="text-center mb-2">
-            <a href="{{ route('tax-payer.edit', $data->id) }}" class="btn btn-primary">
-              Edit
-            </a>
-          </div>
-        </div>        
-
-      </div>
-
-    </div>
-    <div class="col-lg-8 grid-margin stretch-card">
-      <div class="card">
+        <div class="col-md-12"><h5 id="response" class="text-danger"></h5></div>
            <div class="card-body shadow p-3 mb-5 bg-white rounded" id="cameraContainer">
-             <div class="float-right"><a class="btn btn-dark mb-2" href="{{url('tax-payer/')}}">List</a></div>
+             
                <h1 class="mb-4 text-primary">Upload Picture</h1>
 
-               <form class="form mt-4" action="{{url('tax-payer')}}" method="POSt">
+               <form class="form mt-4" action="{{url('tax-payer')}}" method="POST">
                 @csrf
-                
-                 <div class="row">
-                  <div class="col-md-12"><h5 id="response" class="text-danger"></h5></div>
-                        <div class="form-group col-md-4 offset-md-1">
-                            <h4 class="example-title text-center">Camera</h4>
-                          <div class="card text-center">
-                              <div id="my_camera">
-                                  <video id="video" width="320" height="240" autoplay></video>
-                              </div>
-                              <input type="hidden" name="user" id="user" value="{{$data->id}}">
-                          </div>
-                          <p class="card-text text-center mt-2"><button id="btnSnap" class="btn btn-danger" type="button">Capture Photo</button></p>
-                        </div>
-                        <div class="form-group col-md-4 offset-md-1">
-                            <h4 class="example-title text-center">Picture Captured</h4>
-                            <div class="card text-center">
-                                <div>
-                                    <canvas id="canvas" width="320" height="240" style="padding: 5px"></canvas>
-                                </div>
-                            </div>
-                             <div class="">
-                               <input type="text" disabled name="logical_address" id="logicalAddress" class="form-control mt-2">
-                             </div>
+<div class="row">
+   <div class="form-group col-md-4 offset-md-1">
+      <h4 class="example-title text-center">Camera</h4>
+      <div class="card text-center">
+         <div id="my_camera">
+            <video id="video" width="320" height="240" autoplay></video>
+         </div>
+         <input type="hidden" name="user" id="user" value="{{$data->id}}">
+      </div>
+      <p class="card-text text-center mt-2"><button id="btnSnap" class="btn btn-danger" type="button">Capture Photo</button></p>
+   </div>
+   <div class="form-group col-md-4 offset-md-1">
+      <h4 class="example-title text-center">Picture Captured</h4>
+      <div class="card text-center">
+         <div>
+            <canvas id="canvas" width="320" height="240" style="padding: 5px"></canvas>
+         </div>
+      </div>
+      <div class="">
+         <input type="hidden" name="logical_address" id="logicalAddress" class="form-control mt-2">
+      </div>
+   </div>
+</div>
+<div class="form-group text-center">
+   <button type="submit" class="btn btn-primary" id="continue_btn">Submit <i class="fa fa-angle-double-right"></i></button>
+</div>
 
-                        </div>
-                        
-                    </div>
-                    <div class="form-group text-center">
-                      <button type="submit" class="btn btn-primary" id="continue_btn">Submit <i class="fa fa-angle-double-right"></i></button>
-                    </div>
+
 
 
                </form>
@@ -117,6 +58,7 @@ $total = 0;
     var canvas = document.getElementById('canvas'),
                 context = canvas.getContext('2d'),
                 video = document.getElementById('video');
+    var localStream;
 
         //get access to camera
         if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
@@ -124,6 +66,7 @@ $total = 0;
             navigator.mediaDevices.getUserMedia({video: true}).then(function (stream) {
                 //video.src = widow.URL.createObjectURL(stream) 
                 video.srcObject = stream;
+                localStream = stream;
                 video.play();
             });
         }
@@ -132,6 +75,7 @@ $total = 0;
             navigator.getUsrMedia({video: true},
             function (stream) {
                 video.src = stream;
+                localStream = stream;
                 video.play();
             }, errBack);
         }
@@ -140,6 +84,7 @@ $total = 0;
             navigator.webkitGetUserMedia({video: true},
             function (stream) {
                 video.src = window.webkitURL.createObjectURL(stream);
+                localStream = stream;
                 video.play();
             }, errBack);
         }
@@ -148,6 +93,7 @@ $total = 0;
             navigator.mozGetUserMedia({video: true},
             function (stream) {
                 video.src = stream;
+                localStream = stream;
                 video.play();
             }, errBack);
         }
@@ -162,15 +108,18 @@ $total = 0;
         */
         $('#continue_btn').click(function (e) {
             e.preventDefault();
+
             var data = canvas.toDataURL(),
                 user = $("#user").val(),
                 logicalAddress = $("#logicalAddress").val();
+                console.log(logicalAddress);
                 console.info(data+' '+user+' '+logicalAddress);
-            $('#response').addClass('alert alert-info text-center').html('Wait Request is Processing. . .').fadeIn();
+            $('#response').addClass('alert alert-info text-center')
+                    .html('Wait Request is Processing. . .').fadeIn();
             $.ajax({
                 type: "POST",
                 url: "{{url('tax-payer/photo/upload')}}",
-                dataType: 'text',
+                dataType: 'json',
                 headers: {
                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
@@ -181,9 +130,16 @@ $total = 0;
                 }
             }).done(function(o){
                $('#response').removeClass();
-                    if (o.status === 200) {
-                        $('#captureContainer').hide();
-                        swal('success','Good Job', o.msg);
+                    if (o.status == 200) {
+                      //Stop camera
+                        video.pause();
+                        video.src = "";
+                        localStream.getTracks()[0].stop();
+                        $('#cameraContainer').fadeOut(1000,function(){
+                          $('#response').removeClass().addClass("alert alert-success text-center").html(o.msg);
+                        });
+                        
+                        
                     }
                     else {
                         $("#response").addClass("alert alert-danger text-center").html(o.msg);
@@ -220,6 +176,8 @@ $total = 0;
                 break;
             }
           }
+          //Create a hidden field element
+          
 
           getLocation();
   });

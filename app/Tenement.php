@@ -4,28 +4,22 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Transaction extends Model
+class Tenement extends Model
 {
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'transactions';
+    protected $table = 'tenements';
+    
     /**
-     * The primary key associated with the table.
+     * Indicates if the IDs are auto-incrementing.
      *
-     * @var string
+     * @var bool
      */
-    protected $primaryKey = 'id';
-    /**
-     * Fields permitted for filling
-     * @var array
-     */
-    protected $fillable = ['tax_service','tax_payer','amount','gateway_used',
-							'collected_status','lga_id','created_by','txref'];
-	
- 
+   protected $fillable = ['tax_payer','cofo','lga_id','ppty_code','created_by','status'];
+
     public function lga()
     {
         //return $this->hasOne('App\LocalGovernment','foriegn_key','local_key');

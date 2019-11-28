@@ -20,7 +20,6 @@ class TaxPayer extends Model
     protected $primaryKey = 'id';
     /**
      * Fields permitted for filling
-     ooiuutthhgggcgfgf
      * @var array
      */
     protected $fillable = ['fname','lname','oname','phone','address',

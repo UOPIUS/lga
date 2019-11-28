@@ -8,34 +8,33 @@ class CreateTaxPayersTable extends Migration
 {
     /**
      * Run the migrations.
-     *
+     
      * @return void
      */
     public function up()
     {
         Schema::create('tax_payers', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->string('fname');
             $table->string('lname');
             $table->string('oname');
             $table->string('phone');
             $table->string('address');
             $table->string('gender');
-            $table->string('email');
-            $table->unsignedBigInteger('state_id');
-            $table->unsignedBigInteger('lga_id');
-            $table->string('occupation');
+            $table->integer('state_id');
+            $table->integer('lga_id');
             $table->string('photo');
             $table->string('tin');
             $table->string('work_type');
             $table->string('finger_print');
             $table->string('logical_address');
-            $table->string('created_by');
+            $table->integer('created_by');
             $table->string('status');
             $table->timestamps();
-            $table->foreign('state_id')->references('state_id')->on('states');
-            $table->foreign('lga_id')->references('local_id')->on('locals');
             
+            $table->foreign('lga_id')->references('local_id')->on('locals');
+            $table->foreign('state_id')->references('state_id')->on('states');
+            $table->foreign('created_by')->references('id')->on('users');
         });
     }
 

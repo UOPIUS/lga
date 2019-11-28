@@ -20,9 +20,12 @@ class AppServiceProvider extends ServiceProvider
         //LGA
         $this->app->bind('App\Repositories\LocalGovernment\LocalGovernmentInterface', 
             'App\Repositories\LocalGovernment\LocalGovernmentRepository');
-        //LGA
+        //State
         $this->app->bind('App\Repositories\State\StateInterface', 
             'App\Repositories\State\StateRepository');
+         //Transaction
+        $this->app->bind('App\Repositories\Transaction\TransactionInterface', 
+            'App\Repositories\Transaction\TransactionRepository');
     }
 
     /**

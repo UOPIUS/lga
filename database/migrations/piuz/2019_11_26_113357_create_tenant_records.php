@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRevenueStreamsTable extends Migration
+class CreateTenantRecords extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,14 @@ class CreateRevenueStreamsTable extends Migration
      */
     public function up()
     {
-        Schema::create('revenue_streams', function (Blueprint $table) {
-            $table->unsignedBigInteger('id');
-            $table->string('description');
+        Schema::create('tenant_records', function (Blueprint $table) {
+            $table->integer('id');
+            $table->string('full_name');
+            $table->string('age');
+            $table->bigIncrements('age');
             $table->string('created_by');
-            $table->string('updated_by');
             $table->timestamps();
+            $table->foreign('created_by')->references('id')->on('users');
         });
     }
 
@@ -29,6 +31,6 @@ class CreateRevenueStreamsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('revenue_streams');
+        Schema::dropIfExists('tenant_records');
     }
 }
