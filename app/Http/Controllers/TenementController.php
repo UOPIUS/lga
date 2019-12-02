@@ -53,6 +53,7 @@ class TenementController extends Controller
 			$tenement->cofo = $request->cofo;
 			$tenement->lga_id = $client->lga_id;
 			$tenement->address = $request->address;
+			$tenement->money_made = $request->money_made;
 			$tenement->ppty_code = date('YmdHms').$request->tax_service;
 			$tenement->created_by = $user;
 			$tenement->status = '0';

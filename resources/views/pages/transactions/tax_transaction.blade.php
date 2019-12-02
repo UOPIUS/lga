@@ -63,17 +63,28 @@ $total = 0;
       </div>
 
     </div>
-    <div class="col-lg-6 grid-margin grid-margin-lg-0 stretch-card">
+    <div class="col-lg-8 grid-margin grid-margin-lg-0 stretch-card">
       <div class="card">
         <div class="card-body">
           <h1 class="text-primary"></h1>
                   <form class="forms-sample">
-                    <div class="form-group">
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
                       <label>Amount to Pay</label>
                       <input type="text" class="form-control" id="amount">
                     </div>
-                    
-                    <button type="submit" class="btn btn-primary mr-2 pull-right">Submit</button>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label>Payment type</label>
+                      <select class="form-control" id="payType" name="payment_type">
+                        @foreach($gateways as $paymentType)
+                        <option value="{{$paymentType->id}}">{{$paymentType->description}}</option>
+                        @endforeach
+                        </select>
+                    </div>
+                  </div>
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
                     
                   </form>    
 

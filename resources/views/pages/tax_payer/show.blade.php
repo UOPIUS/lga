@@ -138,6 +138,10 @@ $total = 0;
                                   <label>Address of facility</label>
                                   <input type="text" class="form-control" name="address">
                                 </div>
+                                <div class="form-group">
+                                  <label>Amount generated from rent</label>
+                                  <input type="text" class="form-control" name="money_made">
+                                </div>
                                 <button type="submit" class="btn btn-primary pull-right"
                                 id="tmt">Submit
                                 </button>
@@ -191,13 +195,13 @@ $total = 0;
                 </div>
               </div>
             </div>
-            <div class="col-12">
+            <div class="col-lg-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title">Custom pills</h4>
                   <p class="card-description">Add class <code>.nav-pills-custom</code> and <code>.tab-content-custom-pill</code> to <code>.nav-pills</code> and <code>.tab-content</code></p>
                   <div class="row">
-                    <div class="col-md-10 mx-auto">
+                    <div class="col-md-12 mx-auto">
                       <ul class="nav nav-pills nav-pills-custom" id="pills-tab-custom" role="tablist">
                         <li class="nav-item">
                           <a class="nav-link active" id="pills-home-tab-custom" data-toggle="pill" href="#pills-health" role="tab" aria-controls="pills-home" aria-selected="true">
@@ -226,7 +230,7 @@ $total = 0;
                         </li>
                       </ul>
                       <div class="tab-content tab-content-custom-pill" id="pills-tabContent-custom">
-                        <div class="tab-pane fade show active" id="pills-health" role="tabpanel" aria-labelledby="pills-home-tab-custom">
+                        <div class="tab-pane fade active show" id="pills-health" role="tabpanel" aria-labelledby="pills-home-tab-custom">
                           <div class="d-flex mb-4">
                             <img src="../../../../images/samples/300x300/12.jpg" class="w-25 h-100 rounded" alt="sample image">
                             <img src="../../../../images/samples/300x300/1.jpg" class="w-25 h-100 ml-4 rounded" alt="sample image">

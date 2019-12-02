@@ -18,7 +18,7 @@ class Tenement extends Model
      *
      * @var bool
      */
-   protected $fillable = ['tax_payer','cofo','lga_id','ppty_code','created_by','status'];
+   protected $fillable = ['tax_payer','cofo','lga_id','money_made','ppty_code','created_by','status'];
 
     public function lga()
     {

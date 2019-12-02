@@ -26,6 +26,11 @@ class Transaction extends Model
 							'collected_status','lga_id','created_by','txref'];
 	
  
+    public function taxService()
+    {
+        //return $this->hasOne('App\LocalGovernment','foriegn_key','local_key');
+        return $this->belongsTo('App\TaxService', 'tax_service','local_id');
+    }
     public function lga()
     {
         //return $this->hasOne('App\LocalGovernment','foriegn_key','local_key');
